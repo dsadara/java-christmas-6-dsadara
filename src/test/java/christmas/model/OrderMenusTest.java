@@ -14,6 +14,15 @@ class OrderMenusTest {
     public static final List<Menu> MENUS_CONTAIN_ONLY_DRINKS = List.of(Menu.제로콜라, Menu.샴페인, Menu.레드와인);
     public static final ArrayList<Menu> MENUS_HAVE_SIZE_OVER_20 = new ArrayList<>(Collections.nCopies(21, Menu.양송이수프));
 
+    @DisplayName("음식을 아무것도 주문하지 않으면 예외가 발생한다.")
+    @Test
+    public void createOrderMenusByNothing() {
+        //when
+        //then
+        Assertions.assertThatThrownBy(() -> new OrderMenus(List.of()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("음료만 주문하면 예외가 발생한다.")
     @Test
     public void createOrderMenusByAllDrink() {
