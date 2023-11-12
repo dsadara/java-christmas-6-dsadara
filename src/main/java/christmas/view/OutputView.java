@@ -1,11 +1,11 @@
 package christmas.view;
 
-import christmas.type.Message;
+import christmas.type.PromptMessage;
 
 public class OutputView {
 
-    public static void print(Message message) {
-        System.out.println(message.getContent());
+    public static void print(PromptMessage promptMessage) {
+        System.out.println(promptMessage.getContent());
     }
 
 }
