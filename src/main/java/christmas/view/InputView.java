@@ -32,7 +32,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    public static Map<Menu, Integer> getMenuList(List<String> commaSeparatedItems) {
+    private static Map<Menu, Integer> getMenuList(List<String> commaSeparatedItems) {
         Map<Menu, Integer> menus = new HashMap<>();
         for (String item : commaSeparatedItems) {
             String[] hyphenSeparatedItems = item.split("-");

@@ -26,13 +26,13 @@ public class OrderMenus {
                 .sum();
     }
 
-    public void validateMenu(Map<Menu, Integer> menus) {
+    private void validateMenu(Map<Menu, Integer> menus) {
         if (isOnlyOrderDrink(menus)) {
             throw new IllegalArgumentException(CANNOT_ORDER_ONLY_DRINKS);
         }
     }
 
-    public void validateSize(Map<Menu, Integer> menus) {
+    private void validateSize(Map<Menu, Integer> menus) {
         int size = menus.values().stream()
                 .mapToInt(Integer::intValue).sum();
 

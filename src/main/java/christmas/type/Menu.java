@@ -60,6 +60,5 @@ public enum Menu {
         return menuType;
     }
 
-
 }
 
