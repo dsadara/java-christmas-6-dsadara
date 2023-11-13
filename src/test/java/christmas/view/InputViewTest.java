@@ -68,6 +68,18 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("중복 메뉴를 입력했는지 검증한다.")
+    @Test
+    public void readOrderMenusByDuplicateMenu() {
+        //given
+        System.setIn(createUserInput("시저샐러드-1,시저샐러드-1"));
+
+        // when, then
+        Assertions.assertThatThrownBy(InputView::readOrderMenus)
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
     InputStream createUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }
