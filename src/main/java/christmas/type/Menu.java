@@ -45,7 +45,7 @@ public enum Menu {
         if (MENU_MAP.containsKey(name)) {
             return MENU_MAP.get(name);
         }
-        throw new IllegalArgumentException(THERE_IS_NO_SUCH_MENU.getMessage());
+        throw new IllegalArgumentException(INVALID_ORDER.getMessage());
     }
 
     public String getName() {
