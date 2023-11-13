@@ -5,20 +5,22 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 class OrderMenusTest {
 
-    public static final List<Menu> MENUS_CONTAIN_ONLY_DRINKS = List.of(Menu.ZERO_COLA, Menu.CHAMPAGNE, Menu.REDWINE);
-    public static final ArrayList<Menu> MENUS_HAVE_SIZE_OVER_20 = new ArrayList<>(Collections.nCopies(21, Menu.MUSHROOM_SOUP));
+    public static final Map<Menu, Integer> MENUS_CONTAIN_ONLY_DRINKS = Map.ofEntries(
+            Map.entry(Menu.ZERO_COLA, 1),
+            Map.entry(Menu.CHAMPAGNE, 1),
+            Map.entry(Menu.REDWINE, 1)
+    );
+    public static final Map<Menu, Integer> MENUS_HAVE_SIZE_OVER_20 = Map.of(Menu.REDWINE, 21);
 
     @DisplayName("주문 메뉴 개수가 1개 미만이면 에러가 발생한다.")
     @Test
     public void createOrderMenusByNothing() {
         // when, then
-        Assertions.assertThatThrownBy(() -> new OrderMenus(List.of()))
+        Assertions.assertThatThrownBy(() -> new OrderMenus(Map.of()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +44,9 @@ class OrderMenusTest {
     @Test
     public void getPriceSumOfFiveSoup() {
         // given
-        OrderMenus orderMenus = new OrderMenus(List.of(Menu.MUSHROOM_SOUP, Menu.MUSHROOM_SOUP, Menu.MUSHROOM_SOUP));
+        Map<Menu, Integer> menus = Map.of(Menu.MUSHROOM_SOUP, 3);
+        OrderMenus orderMenus = new OrderMenus(menus);
+
         // when, then
         Assertions.assertThat(orderMenus.getPriceSum()).isEqualTo(18000);
     }

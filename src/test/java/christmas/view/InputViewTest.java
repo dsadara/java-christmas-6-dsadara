@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.List;
+import java.util.Map;
 
 
 class InputViewTest {
@@ -48,13 +48,12 @@ class InputViewTest {
         System.setIn(createUserInput("해산물파스타-2,레드와인-1,초코케이크-1"));
 
         // when
-        List<Menu> menus = InputView.readOrderMenus();
+        Map<Menu, Integer> menus = InputView.readOrderMenus();
 
         // then
-        Assertions.assertThat(menus.get(0)).isEqualTo(Menu.SEAFOOD_PASTA);
-        Assertions.assertThat(menus.get(1)).isEqualTo(Menu.SEAFOOD_PASTA);
-        Assertions.assertThat(menus.get(2)).isEqualTo(Menu.REDWINE);
-        Assertions.assertThat(menus.get(3)).isEqualTo(Menu.CHOCO_CAKE);
+        Assertions.assertThat(menus.get(Menu.SEAFOOD_PASTA)).isEqualTo(2);
+        Assertions.assertThat(menus.get(Menu.REDWINE)).isEqualTo(1);
+        Assertions.assertThat(menus.get(Menu.CHOCO_CAKE)).isEqualTo(1);
     }
 
     @DisplayName("없는 메뉴를 주문하면 에러가 발생한다.")
