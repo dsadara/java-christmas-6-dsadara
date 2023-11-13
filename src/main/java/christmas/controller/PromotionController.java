@@ -1,6 +1,5 @@
 package christmas.controller;
 
-import christmas.model.Order;
 import christmas.model.OrderMenus;
 import christmas.type.PromptMessage;
 import christmas.view.InputView;
@@ -15,7 +14,6 @@ public class PromotionController {
         OutputView.print(PromptMessage.READ_VISITING_DATE);
         int date = InputView.readVisitingDate();
         OrderMenus orderMenus = new OrderMenus(new ArrayList<>());
-        Order order = new Order(orderMenus);
     }
 
 }
