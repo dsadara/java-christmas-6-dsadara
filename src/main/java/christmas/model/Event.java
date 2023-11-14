@@ -9,7 +9,6 @@ public class Event {
     private final OrderMenus orderMenus;
     private final December visitingDate;
     private boolean isEventApplicable = true;
-    private Menu freeGift;
 
     public Event(OrderMenus orderMenus, December visitingDate) {
         checkEventApplicable(orderMenus);
@@ -49,6 +48,13 @@ public class Event {
             return 0;
         }
         return 1000;
+    }
+
+    public Menu offerFreeGift() {
+        if (120_000 <= orderMenus.getTotalAmount()) {
+            return Menu.CHAMPAGNE;
+        }
+        return null;
     }
 
 }

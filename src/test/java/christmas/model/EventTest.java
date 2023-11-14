@@ -14,6 +14,8 @@ class EventTest {
     public static final OrderMenus ORDER_MENUS_SAMPLE = new OrderMenus(Map.of(Menu.T_BONE_STEAK, 3));
     public static final OrderMenus ORDER_MENUS_CONTAIN_3_DESERT = new OrderMenus(Map.of(Menu.ICECREAM, 3));
     public static final OrderMenus ORDER_MENUS_CONTAIN_3_MAIN_MENU = new OrderMenus(Map.of(Menu.T_BONE_STEAK, 3));
+    public static final OrderMenus ORDER_MENUS_TOTAL_AMOUNT_IS_MORE_THAN_120_000 = new OrderMenus(Map.of(Menu.T_BONE_STEAK, 3));
+    public static final OrderMenus ORDER_MENUS_TOTAL_AMOUNT_IS_LESS_THAN_120_000 = new OrderMenus(Map.of(Menu.T_BONE_STEAK, 2));
     public static final December WEEKEND = December.FIRST;
     public static final December WEEKDAY = December.FOURTH;
     public static final December STAR_DAY = December.THIRD;
@@ -98,5 +100,32 @@ class EventTest {
         // when, then
         Assertions.assertThat(event.applySpecialDiscount()).isEqualTo(0);
     }
+
+    @DisplayName("할인 전 총주문 금액이 12만 원 이상일 때 샴페인 1개를 증정한다.")
+    @Test
+    public void offerFreeGift_offered() {
+        // given
+        Event event = new Event(ORDER_MENUS_TOTAL_AMOUNT_IS_MORE_THAN_120_000, NORMAL_DAY);
+
+        // when
+        event.offerFreeGift();
+
+        // then
+        Assertions.assertThat(event.offerFreeGift()).isEqualTo(Menu.CHAMPAGNE);
+    }
+
+    @DisplayName("할인 전 총주문 금액이 12만 원 미만일 때 샴페인 1개를 증정하지 않는다.")
+    @Test
+    public void offerFreeGift_notOffered() {
+        // given
+        Event event = new Event(ORDER_MENUS_TOTAL_AMOUNT_IS_LESS_THAN_120_000, NORMAL_DAY);
+
+        // when
+        event.offerFreeGift();
+
+        // then
+        Assertions.assertThat(event.offerFreeGift()).isNull();
+    }
+
 
 }
