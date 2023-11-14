@@ -79,6 +79,28 @@ class InputViewTest {
 
     }
 
+    @DisplayName("메뉴 입력시 hyphen(-)을 누락하면 에러가 발생한다.")
+    @Test
+    public void readOrderMenusWithNoHyphen() {
+        // given
+        System.setIn(createUserInput("해산물파스타,레드와인-2,초코케이크-3"));
+
+        // when, then
+        Assertions.assertThatThrownBy(InputView::readOrderMenus)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("여러 메뉴 입력시 comma(,)을 누락하면 에러가 발생한다.")
+    @Test
+    public void readOrderMenusWithNoComma() {
+        // given
+        System.setIn(createUserInput("해산물파스타-1레드와인-2초코케이크-3"));
+
+        // when, then
+        Assertions.assertThatThrownBy(InputView::readOrderMenus)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     InputStream createUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }

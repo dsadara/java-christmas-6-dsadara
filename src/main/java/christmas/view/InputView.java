@@ -23,7 +23,22 @@ public class InputView {
     public static Map<Menu, Integer> readOrderMenus() {
         String input = Console.readLine();
         List<String> commaSeparatedItems = splitByComma(input);
-        return getMenuMap(commaSeparatedItems);
+        validateHyphen(commaSeparatedItems);
+
+        try {
+            return getMenuMap(commaSeparatedItems);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+        }
+
+    }
+
+    private static void validateHyphen(List<String> commaSeparatedItems) {
+        for (String item : commaSeparatedItems) {
+            if (!item.contains("-")) {
+                throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+            }
+        }
     }
 
     private static List<String> splitByComma(String input) {
@@ -32,12 +47,13 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    private static Map<Menu, Integer> getMenuMap(List<String> commaSeparatedItems) {
+    private static Map<Menu, Integer> getMenuMap(List<String> commaSeparatedItems) throws IllegalArgumentException {
         Map<Menu, Integer> menus = new HashMap<>();
         for (String item : commaSeparatedItems) {
             String[] hyphenSeparatedItems = item.split("-");
             Menu menu = Menu.of(hyphenSeparatedItems[0]);
             int number = Integer.parseInt(hyphenSeparatedItems[1]);
+            // 중복 메뉴를 입력했는지 검증
             if (menus.containsKey(menu)) {
                 throw new IllegalArgumentException(INVALID_ORDER.getMessage());
             }
