@@ -44,4 +44,11 @@ public class Event {
         return orderMenus.getNumberByMenuType(MenuType.MAIN) * 2023;
     }
 
+    public int applySpecialDiscount() {
+        if (!visitingDate.isStar()) {
+            return 0;
+        }
+        return 1000;
+    }
+
 }

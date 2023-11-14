@@ -16,6 +16,8 @@ class EventTest {
     public static final OrderMenus ORDER_MENUS_CONTAIN_3_MAIN_MENU = new OrderMenus(Map.of(Menu.T_BONE_STEAK, 3));
     public static final December WEEKEND = December.FIRST;
     public static final December WEEKDAY = December.FOURTH;
+    public static final December STAR_DAY = December.THIRD;
+    public static final December NORMAL_DAY = December.FOURTH;
 
     @DisplayName("크리스마스(25일)에는 3400원을 할인 받을 수 있다.")
     @Test
@@ -75,6 +77,26 @@ class EventTest {
 
         // when, then
         Assertions.assertThat(event.applyWeekendDiscount()).isEqualTo(0);
+    }
+
+    @DisplayName("이벤트 달력에 별이 있으면 총 주문 금액에서 1000원을 할인 받는다.")
+    @Test
+    public void applySpecialDiscountAtStarDay() {
+        // given
+        Event event = new Event(ORDER_MENUS_SAMPLE, STAR_DAY);
+
+        // when, then
+        Assertions.assertThat(event.applySpecialDiscount()).isEqualTo(1000);
+    }
+
+    @DisplayName("이벤트 달력에 별이 없으면 총 주문 금액에서 1000원을 할인 받지 않는다.")
+    @Test
+    public void applySpecialDiscountAtNormalDay() {
+        // given
+        Event event = new Event(ORDER_MENUS_SAMPLE, NORMAL_DAY);
+
+        // when, then
+        Assertions.assertThat(event.applySpecialDiscount()).isEqualTo(0);
     }
 
 }

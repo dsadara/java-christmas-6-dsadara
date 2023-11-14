@@ -9,37 +9,37 @@ import java.util.stream.Stream;
 import static christmas.type.ErrorCode.THERE_IS_NO_SUCH_DATE;
 
 public enum December {
-    FIRST(1, true),
-    SECOND(2, true),
-    THIRD(3, false),
-    FOURTH(4, false),
-    FIFTH(5, false),
-    SIXTH(6, false),
-    SEVENTH(7, false),
-    EIGHTH(8, true),
-    NINTH(9, true),
-    TENTH(10, false),
-    ELEVENTH(11, false),
-    TWELFTH(12, false),
-    THIRTEENTH(13, false),
-    FOURTEENTH(14, false),
-    FIFTEENTH(15, true),
-    SIXTEENTH(16, true),
-    SEVENTEENTH(17, false),
-    EIGHTEENTH(18, false),
-    NINETEENTH(19, false),
-    TWENTIETH(20, false),
-    TWENTY_FIRST(21, false),
-    TWENTY_SECOND(22, true),
-    TWENTY_THIRD(23, true),
-    TWENTY_FOURTH(24, false),
-    TWENTY_FIFTH(25, false),
-    TWENTY_SIXTH(26, false),
-    TWENTY_SEVENTH(27, false),
-    TWENTY_EIGHTH(28, false),
-    TWENTY_NINTH(29, true),
-    THIRTIETH(30, true),
-    THIRTY_FIRST(31, false);
+    FIRST(1, true, false),
+    SECOND(2, true, false),
+    THIRD(3, false, true),
+    FOURTH(4, false, false),
+    FIFTH(5, false, false),
+    SIXTH(6, false, false),
+    SEVENTH(7, false, false),
+    EIGHTH(8, true, false),
+    NINTH(9, true, false),
+    TENTH(10, false, true),
+    ELEVENTH(11, false, false),
+    TWELFTH(12, false, false),
+    THIRTEENTH(13, false, false),
+    FOURTEENTH(14, false, false),
+    FIFTEENTH(15, true, false),
+    SIXTEENTH(16, true, false),
+    SEVENTEENTH(17, false, true),
+    EIGHTEENTH(18, false, false),
+    NINETEENTH(19, false, false),
+    TWENTIETH(20, false, false),
+    TWENTY_FIRST(21, false, false),
+    TWENTY_SECOND(22, true, false),
+    TWENTY_THIRD(23, true, false),
+    TWENTY_FOURTH(24, false, true),
+    TWENTY_FIFTH(25, false, true),
+    TWENTY_SIXTH(26, false, false),
+    TWENTY_SEVENTH(27, false, false),
+    TWENTY_EIGHTH(28, false, false),
+    TWENTY_NINTH(29, true, false),
+    THIRTIETH(30, true, false),
+    THIRTY_FIRST(31, false, true);
 
     private static final Map<Integer, December> DECEMBER_MAP =
             Collections.unmodifiableMap(Stream.of(values())
@@ -47,10 +47,12 @@ public enum December {
 
     private final int date;
     private final boolean isWeekend;
+    private final boolean isStar;
 
-    December(int date, boolean isWeekend) {
+    December(int date, boolean isWeekend, boolean isStar) {
         this.date = date;
         this.isWeekend = isWeekend;
+        this.isStar = isStar;
     }
 
     public static December of(int date) {
@@ -66,6 +68,10 @@ public enum December {
 
     public boolean isWeekend() {
         return isWeekend;
+    }
+
+    public boolean isStar() {
+        return isStar;
     }
 
 }
