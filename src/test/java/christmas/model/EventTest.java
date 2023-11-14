@@ -12,9 +12,10 @@ import java.util.Map;
 class EventTest {
 
     public static final OrderMenus ORDER_MENUS_SAMPLE = new OrderMenus(Map.of(Menu.T_BONE_STEAK, 3));
-    public static final December WEEKDAY = December.FOURTH;
     public static final OrderMenus ORDER_MENUS_CONTAIN_3_DESERT = new OrderMenus(Map.of(Menu.ICECREAM, 3));
+    public static final OrderMenus ORDER_MENUS_CONTAIN_3_MAIN_MENU = new OrderMenus(Map.of(Menu.T_BONE_STEAK, 3));
     public static final December WEEKEND = December.FIRST;
+    public static final December WEEKDAY = December.FOURTH;
 
     @DisplayName("크리스마스(25일)에는 3400원을 할인 받을 수 있다.")
     @Test
@@ -54,6 +55,26 @@ class EventTest {
 
         // when, then
         Assertions.assertThat(event.applyWeekDayDiscount()).isEqualTo(0);
+    }
+
+    @DisplayName("방문 날짜가 주말이면 메인 메뉴 1개당 2023원 할인 받는다.")
+    @Test
+    public void applyWeekendDiscountAtWeekEnd() {
+        // given
+        Event event = new Event(ORDER_MENUS_CONTAIN_3_MAIN_MENU, WEEKEND);
+
+        // when, then
+        Assertions.assertThat(event.applyWeekendDiscount()).isEqualTo(3 * 2023);
+    }
+
+    @DisplayName("방문 날짜가 주말이 아니면 메인 메뉴를 할인받지 않는다.")
+    @Test
+    public void applyWeekendDiscountAtWeekDay() {
+        // given
+        Event event = new Event(ORDER_MENUS_CONTAIN_3_MAIN_MENU, WEEKDAY);
+
+        // when, then
+        Assertions.assertThat(event.applyWeekendDiscount()).isEqualTo(0);
     }
 
 }

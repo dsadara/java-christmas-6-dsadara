@@ -37,4 +37,11 @@ public class Event {
         return orderMenus.getNumberByMenuType(MenuType.DESSERT) * 2023;
     }
 
+    public int applyWeekendDiscount() {
+        if (!visitingDate.isWeekend()) {
+            return 0;
+        }
+        return orderMenus.getNumberByMenuType(MenuType.MAIN) * 2023;
+    }
+
 }
