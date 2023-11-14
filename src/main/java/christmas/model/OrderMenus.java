@@ -16,7 +16,7 @@ public class OrderMenus {
     private final Map<Menu, Integer> menus;
 
     public OrderMenus(Map<Menu, Integer> menus) {
-        validateSize(menus);
+        validateNumber(menus);
         validateMenu(menus);
         this.menus = menus;
     }
@@ -33,17 +33,21 @@ public class OrderMenus {
         }
     }
 
-    private void validateSize(Map<Menu, Integer> menus) {
-        int size = menus.values().stream()
-                .mapToInt(Integer::intValue).sum();
+    private void validateNumber(Map<Menu, Integer> menus) {
+        int numberOfMenus = getNumberOf(menus);
 
-        if (size < 1) {
+        if (numberOfMenus < 1) {
             throw new IllegalArgumentException(INVALID_ORDER.getMessage());
         }
 
-        if (size > NUMBER_OF_MENUS_LIMIT) {
+        if (numberOfMenus > NUMBER_OF_MENUS_LIMIT) {
             throw new IllegalArgumentException(ORDER_MENU_NUMBER_LIMIT_IS_20.getMessage());
         }
+    }
+
+    private int getNumberOf(Map<Menu, Integer> menus) {
+        return menus.values().stream()
+                .mapToInt(Integer::intValue).sum();
     }
 
     private boolean isOnlyOrderDrink(Map<Menu, Integer> menus) {
