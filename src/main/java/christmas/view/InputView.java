@@ -23,7 +23,7 @@ public class InputView {
     public static Map<Menu, Integer> readOrderMenus() {
         String input = Console.readLine();
         List<String> commaSeparatedItems = splitByComma(input);
-        return getMenuList(commaSeparatedItems);
+        return getMenuMap(commaSeparatedItems);
     }
 
     private static List<String> splitByComma(String input) {
@@ -32,7 +32,7 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    private static Map<Menu, Integer> getMenuList(List<String> commaSeparatedItems) {
+    private static Map<Menu, Integer> getMenuMap(List<String> commaSeparatedItems) {
         Map<Menu, Integer> menus = new HashMap<>();
         for (String item : commaSeparatedItems) {
             String[] hyphenSeparatedItems = item.split("-");
