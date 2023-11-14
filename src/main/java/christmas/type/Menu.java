@@ -1,12 +1,14 @@
 package christmas.type;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static christmas.type.ErrorCode.*;
+import static christmas.type.ErrorCode.INVALID_ORDER;
 import static christmas.type.MenuType.APPETIZER;
 import static christmas.type.MenuType.DESSERT;
 import static christmas.type.MenuType.DRINK;
@@ -46,6 +48,12 @@ public enum Menu {
             return MENU_MAP.get(name);
         }
         throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+    }
+
+    public static List<Menu> getMenusByMenuType(MenuType menuType) {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.menuType.equals(menuType))
+                .collect(Collectors.toList());
     }
 
     public String getName() {

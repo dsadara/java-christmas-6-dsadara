@@ -2,6 +2,7 @@ package christmas.model;
 
 import christmas.type.December;
 import christmas.type.Menu;
+import christmas.type.MenuType;
 
 public class Event {
 
@@ -29,6 +30,11 @@ public class Event {
         return 1000 + 100 * (visitingDate.getDate() - 1);
     }
 
-
+    public int applyWeekDayDiscount() {
+        if (visitingDate.isWeekend()) {
+            return 0;
+        }
+        return orderMenus.getNumberByMenuType(MenuType.DESSERT) * 2023;
+    }
 
 }

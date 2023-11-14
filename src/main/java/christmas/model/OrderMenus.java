@@ -33,6 +33,11 @@ public class OrderMenus {
         }
     }
 
+    private boolean isOnlyOrderDrink(Map<Menu, Integer> menus) {
+        return menus.keySet().stream()
+                .allMatch(menu -> menu.getMenuType().equals(MenuType.DRINK));
+    }
+
     private void validateNumber(Map<Menu, Integer> menus) {
         int numberOfMenus = getNumberOf(menus);
 
@@ -50,9 +55,11 @@ public class OrderMenus {
                 .mapToInt(Integer::intValue).sum();
     }
 
-    private boolean isOnlyOrderDrink(Map<Menu, Integer> menus) {
-        return menus.keySet().stream()
-                .allMatch(menu -> menu.getMenuType().equals(MenuType.DRINK));
+    public int getNumberByMenuType(MenuType menuType) {
+        return menus.entrySet().stream()
+                .filter(entry -> entry.getKey().getMenuType().equals(menuType))
+                .mapToInt(Map.Entry::getValue)
+                .sum();
     }
 
 }
