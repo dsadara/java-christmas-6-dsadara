@@ -21,7 +21,7 @@ public class OrderMenus {
         this.menus = menus;
     }
 
-    public int getPriceSum() {
+    public int getTotalAmount() {
         return menus.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();

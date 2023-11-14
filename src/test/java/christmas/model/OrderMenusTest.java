@@ -48,6 +48,6 @@ class OrderMenusTest {
         OrderMenus orderMenus = new OrderMenus(menus);
 
         // when, then
-        Assertions.assertThat(orderMenus.getPriceSum()).isEqualTo(18000);
+        Assertions.assertThat(orderMenus.getTotalAmount()).isEqualTo(18000);
     }
 }
