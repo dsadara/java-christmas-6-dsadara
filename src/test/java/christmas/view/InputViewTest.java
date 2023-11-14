@@ -70,13 +70,12 @@ class InputViewTest {
     @DisplayName("중복 메뉴를 입력했는지 검증한다.")
     @Test
     public void readOrderMenusByDuplicateMenu() {
-        //given
+        // given
         System.setIn(createUserInput("시저샐러드-1,시저샐러드-1"));
 
         // when, then
         Assertions.assertThatThrownBy(InputView::readOrderMenus)
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
 
     @DisplayName("메뉴 입력시 hyphen(-)을 누락하면 에러가 발생한다.")
