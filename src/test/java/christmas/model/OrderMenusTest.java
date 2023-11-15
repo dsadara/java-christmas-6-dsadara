@@ -14,6 +14,10 @@ class OrderMenusTest {
             Map.entry(Menu.CHAMPAGNE, 1),
             Map.entry(Menu.REDWINE, 1)
     );
+    public static final Map<Menu, Integer> MENUS_CONTAIN_ONE_TAPAS_AND_ONE_ZEROCOLA = Map.ofEntries(
+            Map.entry(Menu.ZERO_COLA, 1),
+            Map.entry(Menu.TAPAS, 1)
+    );
     public static final Map<Menu, Integer> MENUS_HAVE_SIZE_OVER_20 = Map.of(Menu.REDWINE, 21);
 
     @DisplayName("주문 메뉴 개수가 1개 미만이면 에러가 발생한다.")
@@ -49,5 +53,16 @@ class OrderMenusTest {
 
         // when, then
         Assertions.assertThat(orderMenus.getTotalAmount()).isEqualTo(18000);
+    }
+
+    @DisplayName("주문 메뉴를 출력한다.")
+    @Test
+    public void OrderMenus_toString() {
+        // given
+        OrderMenus orderMenus = new OrderMenus(MENUS_CONTAIN_ONE_TAPAS_AND_ONE_ZEROCOLA);
+
+        // when, then
+        Assertions.assertThat(orderMenus.toString())
+                .isEqualTo("타파스 1개\n" + "제로콜라 1개");
     }
 }

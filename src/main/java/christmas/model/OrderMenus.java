@@ -3,6 +3,7 @@ package christmas.model;
 import christmas.type.Menu;
 import christmas.type.MenuType;
 
+import java.util.List;
 import java.util.Map;
 
 import static christmas.type.ErrorCode.CANNOT_ORDER_ONLY_DRINKS;
@@ -64,7 +65,9 @@ public class OrderMenus {
 
     @Override
     public String toString() {
-        return String.join("\n", Menu.formatMenuAndNumberMap(menus));
+        List<String> menuAndNumberFormatted = menus.entrySet().stream()
+                .map(entry -> entry.getKey().getName() + " " + entry.getValue() + "개").toList();
+        return String.join("\n", menuAndNumberFormatted);
     }
 
 }
