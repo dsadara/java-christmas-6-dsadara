@@ -6,7 +6,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static christmas.type.ErrorCode.THERE_IS_NO_SUCH_DATE;
+import static christmas.type.ErrorCode.INVALID_DATE;
 
 public enum December {
     FIRST(1, true, false),
@@ -59,7 +59,7 @@ public enum December {
         if (DECEMBER_MAP.containsKey(date)) {
             return DECEMBER_MAP.get(date);
         }
-        throw new IllegalArgumentException(THERE_IS_NO_SUCH_DATE.getMessage());
+        throw new IllegalArgumentException(INVALID_DATE.getMessage());
     }
 
     public int getDate() {

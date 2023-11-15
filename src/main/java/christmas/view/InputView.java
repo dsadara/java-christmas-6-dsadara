@@ -9,34 +9,46 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static christmas.type.ErrorCode.INPUT_IS_NOT_NUMBER;
+import static christmas.type.ErrorCode.INVALID_DATE;
 import static christmas.type.ErrorCode.INVALID_ORDER;
 
 public class InputView {
 
     public static int readVisitingDate() {
-        String input = Console.readLine();
-        validateNumeric(input);
-        return Integer.parseInt(input);
+        int date;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                validateNumeric(input);
+                date = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(INVALID_DATE.getMessage());
+            }
+        }
+        return date;
     }
 
     public static Map<Menu, Integer> readOrderMenus() {
-        String input = Console.readLine();
-        List<String> commaSeparatedItems = splitByComma(input);
-        validateHyphen(commaSeparatedItems);
-
-        try {
-            return getMenuMap(commaSeparatedItems);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+        Map<Menu, Integer> menus;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                List<String> commaSeparatedItems = splitByComma(input);
+                validateHyphen(commaSeparatedItems);
+                menus = getMenuMap(commaSeparatedItems);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(INVALID_ORDER.getMessage());
+            }
         }
-
+        return menus;
     }
 
     private static void validateHyphen(List<String> commaSeparatedItems) {
         for (String item : commaSeparatedItems) {
             if (!item.contains("-")) {
-                throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+                throw new IllegalArgumentException();
             }
         }
     }
@@ -55,7 +67,7 @@ public class InputView {
             int number = Integer.parseInt(hyphenSeparatedItems[1]);
             // 중복 메뉴를 입력했는지 검증
             if (menus.containsKey(menu)) {
-                throw new IllegalArgumentException(INVALID_ORDER.getMessage());
+                throw new IllegalArgumentException();
             }
             menus.put(menu, number);
         }
@@ -64,7 +76,7 @@ public class InputView {
 
     private static void validateNumeric(String input) {
         if (!input.matches("^[0-9]*$")) {
-            throw new IllegalArgumentException(INPUT_IS_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
