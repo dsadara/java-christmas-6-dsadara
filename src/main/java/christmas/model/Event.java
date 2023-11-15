@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.dto.EventResult;
 import christmas.type.December;
 import christmas.type.Menu;
 import christmas.type.MenuType;
@@ -55,6 +56,13 @@ public class Event {
             return Menu.CHAMPAGNE;
         }
         return Menu.NONE;
+    }
+
+    public EventResult getEventResult() {
+        return EventResult.of(orderMenus, orderMenus.getTotalAmount(),
+                applyChristmasDiscount(), applyWeekDayDiscount(),
+                applyWeekendDiscount(), applySpecialDiscount(),
+                offerFreeGift());
     }
 
 }
