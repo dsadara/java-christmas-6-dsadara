@@ -34,10 +34,16 @@ public class ChristmasEvent implements Event{
     }
 
     @Override
+    public String getName() {
+        return "크리스마스 디데이 할인";
+    }
+
+    @Override
     public String toString() {
         if (isApplied) {
-            return String.format("크리스마스 디데이 할인: -%s원", Formatter.formatMoney(discount));
+            return String.format("크리스마스 디데이 할인: %s\n", Formatter.formatMoneyMinus(discount));
         }
         return "";
     }
+
 }

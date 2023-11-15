@@ -34,9 +34,14 @@ public class SpecialEvent implements Event{
     }
 
     @Override
+    public String getName() {
+        return "특별 할인";
+    }
+
+    @Override
     public String toString() {
         if (isApplied) {
-            return String.format("특별 할인: -%s원", Formatter.formatMoney(discount));
+            return String.format("특별 할인: %s\n", Formatter.formatMoneyMinus(discount));
         }
         return "";
     }

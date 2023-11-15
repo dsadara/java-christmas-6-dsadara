@@ -35,9 +35,14 @@ public class WeekdayEvent implements Event{
     }
 
     @Override
+    public String getName() {
+        return "평일 할인";
+    }
+
+    @Override
     public String toString() {
         if (isApplied) {
-            return String.format("평일 할인: -%s원", Formatter.formatMoney(discount));
+            return String.format("평일 할인: %s\n", Formatter.formatMoneyMinus(discount));
         }
         return "";
     }

@@ -20,6 +20,7 @@ public class PromotionController {
         OrderMenus orderMenus = new OrderMenus(InputView.readOrderMenus());
 
         Events events = new Events(orderMenus, visitingDate, Event.getDecemberEvents());
+        OutputView.print(events.getEventResult());
     }
 
 }

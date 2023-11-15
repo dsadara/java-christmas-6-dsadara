@@ -51,7 +51,7 @@ class ChristmasEventTest {
         christmasEvent.apply(ORDER_MENUS_SAMPLE, December.TWENTY_FIFTH);
 
         // then
-        Assertions.assertThat(christmasEvent.toString()).isEqualTo("크리스마스 디데이 할인: -3,400원");
+        Assertions.assertThat(christmasEvent.toString()).isEqualTo("크리스마스 디데이 할인: -3,400원\n");
     }
 
     @DisplayName("크리스마스 디데이 이벤트가 적용되지 않으면 할인금액을 출력하지 않는다.")

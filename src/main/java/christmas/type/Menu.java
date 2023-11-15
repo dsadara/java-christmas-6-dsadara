@@ -20,7 +20,7 @@ public enum Menu {
     TAPAS("타파스", APPETIZER, 5500),
     CAESER_SALAD("시저샐러드", APPETIZER, 8000),
     T_BONE_STEAK("티본스테이크", MAIN, 55000),
-    BBQ_RIB("바베큐립", MAIN, 54000),
+    BBQ_RIB("바비큐립", MAIN, 54000),
     SEAFOOD_PASTA("해산물파스타", MAIN, 35000),
     CHRISTMAS_PASTA("크리스마스파스타", MAIN, 25000),
     CHOCO_CAKE("초코케이크", DESSERT, 15000),

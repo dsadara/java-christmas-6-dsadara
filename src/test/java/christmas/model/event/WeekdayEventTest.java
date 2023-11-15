@@ -53,7 +53,7 @@ class WeekdayEventTest {
         weekdayEvent.apply(ORDER_MENUS_CONTAIN_3_DESERT, WEEKDAY);
 
         // then
-        Assertions.assertThat(weekdayEvent.toString()).isEqualTo("평일 할인: -6,069원");
+        Assertions.assertThat(weekdayEvent.toString()).isEqualTo("평일 할인: -6,069원\n");
     }
 
     @DisplayName("평일 이벤트 할인 이벤트가 적용되지 않으면 할인금액을 출력하지 않는다.")

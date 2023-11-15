@@ -41,11 +41,23 @@ public class FreegiftEvent implements Event{
     }
 
     @Override
+    public String getName() {
+        return "증정 이벤트";
+    }
+
+    @Override
     public String toString() {
         if (isApplied) {
-            return String.format("증정 이벤트: -%s원", Formatter.formatMoney(getDiscountAmount()));
+            return String.format("증정 이벤트: %s\n", Formatter.formatMoneyMinus(getDiscountAmount()));
         }
         return "";
+    }
+
+    public String getMenuAndNumberFormatted() {
+        if (isApplied) {
+            return String.format("%s %d개", freeGift.getName(), numberOfGift);
+        }
+        return "없음";
     }
 
     public Menu getFreeGift() {

@@ -54,7 +54,7 @@ class SpecialEventTest {
         specialEvent.apply(ORDER_MENUS_SAMPLE, STAR_DAY);
 
         // then
-        Assertions.assertThat(specialEvent.toString()).isEqualTo("특별 할인: -1,000원");
+        Assertions.assertThat(specialEvent.toString()).isEqualTo("특별 할인: -1,000원\n");
     }
 
     @DisplayName("특별 이벤트 할인 이벤트가 적용되지 않으면 할인금액을 출력하지 않는다.")
