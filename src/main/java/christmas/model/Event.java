@@ -59,10 +59,16 @@ public class Event {
     }
 
     public EventResult getEventResult() {
+        if (isEventApplicable) {
+            return EventResult.of(orderMenus, orderMenus.getTotalAmount(),
+                    applyChristmasDiscount(), applyWeekDayDiscount(),
+                    applyWeekendDiscount(), applySpecialDiscount(),
+                    offerFreeGift(), visitingDate);
+        }
         return EventResult.of(orderMenus, orderMenus.getTotalAmount(),
-                applyChristmasDiscount(), applyWeekDayDiscount(),
-                applyWeekendDiscount(), applySpecialDiscount(),
-                offerFreeGift());
+                0, 0,
+                0, 0,
+                Menu.NONE, visitingDate);
     }
 
 }

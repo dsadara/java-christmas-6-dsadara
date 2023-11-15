@@ -62,4 +62,9 @@ public class OrderMenus {
                 .sum();
     }
 
+    @Override
+    public String toString() {
+        return String.join("\n", Menu.formatMenuAndNumberMap(menus));
+    }
+
 }

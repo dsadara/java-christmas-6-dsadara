@@ -57,6 +57,11 @@ public enum Menu {
                 .collect(Collectors.toList());
     }
 
+    public static List<String> formatMenuAndNumberMap(Map<Menu, Integer> menus) {
+        return menus.entrySet().stream()
+                .map(entry -> entry.getKey().getName() + "-" + entry.getValue()).toList();
+    }
+
     public String getName() {
         return name;
     }

@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.model.Event;
 import christmas.model.OrderMenus;
 import christmas.type.December;
 import christmas.type.PromptMessage;
@@ -16,6 +17,9 @@ public class PromotionController {
 
         OutputView.print(PromptMessage.READ_ORDER_MENUS);
         OrderMenus orderMenus = new OrderMenus(InputView.readOrderMenus());
+
+        Event event = new Event(orderMenus, visitingDate);
+        OutputView.print(event.getEventResult());
     }
 
 }
