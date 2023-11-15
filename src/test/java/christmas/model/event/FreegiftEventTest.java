@@ -44,4 +44,31 @@ class FreegiftEventTest {
         Assertions.assertThat(freegiftEvent.getFreeGift()).isEqualTo(Menu.NONE);
         Assertions.assertThat(freegiftEvent.getDiscountAmount()).isEqualTo(0);
     }
+
+    @DisplayName("증정 이벤트 할인금액을 출력한다.")
+    @Test
+    public void FreegiftEvent_toString() {
+        // given
+        FreegiftEvent freegiftEvent = new FreegiftEvent();
+
+        // when
+        freegiftEvent.apply(ORDER_MENUS_TOTAL_AMOUNT_IS_MORE_THAN_120_000, NORMAL_DAY);
+
+        // then
+        Assertions.assertThat(freegiftEvent.toString()).isEqualTo("증정 이벤트: -25,000원");
+    }
+
+    @DisplayName("증정 이벤트 할인 이벤트가 적용되지 않으면 할인금액을 출력하지 않는다.")
+    @Test
+    public void FreegiftEvent_toString_NotApplied() {
+        // given
+        FreegiftEvent freegiftEvent = new FreegiftEvent();
+
+        // when
+        freegiftEvent.apply(ORDER_MENUS_TOTAL_AMOUNT_IS_LESS_THAN_120_000, NORMAL_DAY);
+
+        // then
+        Assertions.assertThat(freegiftEvent.toString()).isEqualTo("");
+    }
+
 }

@@ -3,6 +3,7 @@ package christmas.model.event;
 import christmas.model.OrderMenus;
 import christmas.type.December;
 import christmas.type.MenuType;
+import christmas.util.Formatter;
 
 public class WeekdayEvent implements Event{
 
@@ -31,6 +32,14 @@ public class WeekdayEvent implements Event{
     @Override
     public int getDiscountAmount() {
         return discount;
+    }
+
+    @Override
+    public String toString() {
+        if (isApplied) {
+            return String.format("평일 할인: -%s원", Formatter.formatMoney(discount));
+        }
+        return "";
     }
 
 }

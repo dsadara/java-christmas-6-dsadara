@@ -3,6 +3,7 @@ package christmas.model.event;
 import christmas.model.OrderMenus;
 import christmas.type.December;
 import christmas.type.Menu;
+import christmas.util.Formatter;
 
 import static christmas.type.Menu.CHAMPAGNE;
 import static christmas.type.Menu.NONE;
@@ -37,6 +38,14 @@ public class FreegiftEvent implements Event{
     @Override
     public int getDiscountAmount() {
         return freeGift.getPrice() * numberOfGift;
+    }
+
+    @Override
+    public String toString() {
+        if (isApplied) {
+            return String.format("증정 이벤트: -%s원", Formatter.formatMoney(getDiscountAmount()));
+        }
+        return "";
     }
 
     public Menu getFreeGift() {

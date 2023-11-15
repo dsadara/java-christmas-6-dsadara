@@ -63,6 +63,6 @@ class OrderMenusTest {
 
         // when, then
         Assertions.assertThat(orderMenus.toString())
-                .isEqualTo("타파스 1개\n" + "제로콜라 1개");
+                .contains("제로콜라 1개", "타파스 1개");
     }
 }

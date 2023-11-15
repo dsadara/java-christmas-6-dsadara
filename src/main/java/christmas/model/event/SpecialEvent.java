@@ -2,6 +2,7 @@ package christmas.model.event;
 
 import christmas.model.OrderMenus;
 import christmas.type.December;
+import christmas.util.Formatter;
 
 public class SpecialEvent implements Event{
 
@@ -30,6 +31,14 @@ public class SpecialEvent implements Event{
     @Override
     public int getDiscountAmount() {
         return discount;
+    }
+
+    @Override
+    public String toString() {
+        if (isApplied) {
+            return String.format("특별 할인: -%s원", Formatter.formatMoney(discount));
+        }
+        return "";
     }
 
 }

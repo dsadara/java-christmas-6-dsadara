@@ -2,6 +2,7 @@ package christmas.model.event;
 
 import christmas.model.OrderMenus;
 import christmas.type.December;
+import christmas.util.Formatter;
 
 public class ChristmasEvent implements Event{
 
@@ -32,4 +33,11 @@ public class ChristmasEvent implements Event{
         return discount;
     }
 
+    @Override
+    public String toString() {
+        if (isApplied) {
+            return String.format("크리스마스 디데이 할인: -%s원", Formatter.formatMoney(discount));
+        }
+        return "";
+    }
 }

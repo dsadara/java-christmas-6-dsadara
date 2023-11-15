@@ -41,4 +41,30 @@ class ChristmasEventTest {
         Assertions.assertThat(christmasEvent.getDiscountAmount()).isEqualTo(0);
     }
 
+    @DisplayName("크리스마스 디데이 할인금액을 출력한다.")
+    @Test
+    public void ChristmasEvent_toString() {
+        // given
+        ChristmasEvent christmasEvent = new ChristmasEvent();
+
+        // when
+        christmasEvent.apply(ORDER_MENUS_SAMPLE, December.TWENTY_FIFTH);
+
+        // then
+        Assertions.assertThat(christmasEvent.toString()).isEqualTo("크리스마스 디데이 할인: -3,400원");
+    }
+
+    @DisplayName("크리스마스 디데이 이벤트가 적용되지 않으면 할인금액을 출력하지 않는다.")
+    @Test
+    public void ChristmasEvent_toString_NotApplied() {
+        // given
+        ChristmasEvent christmasEvent = new ChristmasEvent();
+
+        // when
+        christmasEvent.apply(ORDER_MENUS_SAMPLE, December.TWENTY_SIXTH);
+
+        // then
+        Assertions.assertThat(christmasEvent.toString()).isEqualTo("");
+    }
+
 }
