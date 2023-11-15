@@ -124,7 +124,7 @@ class EventTest {
         event.offerFreeGift();
 
         // then
-        Assertions.assertThat(event.offerFreeGift()).isNull();
+        Assertions.assertThat(event.offerFreeGift()).isEqualTo(Menu.NONE);
     }
 
 

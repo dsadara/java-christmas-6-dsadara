@@ -54,7 +54,7 @@ public class Event {
         if (120_000 <= orderMenus.getTotalAmount()) {
             return Menu.CHAMPAGNE;
         }
-        return null;
+        return Menu.NONE;
     }
 
 }
